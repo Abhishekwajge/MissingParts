@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="CatalogService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Parts_Header" EntityType="CatalogService.Parts_Header"/>
+            </EntityContainer>
+            <EntityType Name="Parts_Header">
+                <Key>
+                    <PropertyRef Name="FehlteilID"/>
+                </Key>
+                <Property Name="FehlteilID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="MaterialNr" Type="Edm.String" MaxLength="100"/>
+                <Property Name="MaterialDesc" Type="Edm.String" MaxLength="1024"/>
+                <Property Name="Fehlteilmenge" Type="Edm.Int32"/>
+                <Property Name="FehlteilUnit" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Bedarfstermin" Type="Edm.DateTimeOffset"/>
+                <Property Name="Bedarfswerk" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Lagerort" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Bewertungsart" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Warenempfanger" Type="Edm.String" MaxLength="1024"/>
+                <Property Name="Verrechnungsnummer" Type="Edm.Int32"/>
+                <Property Name="Fahrzeugnummer" Type="Edm.String" MaxLength="100"/>
+                <Property Name="FahrzeugseitCheck" Type="Edm.Boolean"/>
+                <Property Name="Fahrzeugseit" Type="Edm.DateTimeOffset"/>
+                <Property Name="Liefertermin" Type="Edm.Date"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

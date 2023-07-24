@@ -1,0 +1,223 @@
+{
+    "_version": "1.49.0",
+    "sap.app": {
+        "id": "missingpartsapp",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.10.2",
+            "toolsId": "bf871b3c-c5ba-4362-96f8-44ed0691bfc7"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/catalog/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "4.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.115.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {},
+                "sap.f": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "missingpartsapp.i18n.i18n"
+                }
+            },
+            "i18n|sap.suite.ui.generic.template.ListReport|Parts_HeaderList": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/ListReport/Parts_Header/i18n.properties"
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "config": {
+                "flexibleColumnLayout": {
+                    "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
+                    "defaultThreeColumnLayoutType": "ThreeColumnsEndExpanded"
+                },
+                "routerClass": "sap.f.routing.Router"
+            },
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "Parts_HeaderList",
+                    "target": [
+                        "Parts_HeaderList"
+                    ]
+                },
+                {
+                    "pattern": "Parts_Header({key}):?query:",
+                    "name": "Parts_HeaderObjectPage",
+                    "target": [
+                        "Parts_HeaderList",
+                        "Parts_HeaderObjectPage"
+                    ]
+                }
+            ],
+            "targets": {
+                "Parts_HeaderList": {
+                    "type": "Component",
+                    "id": "Parts_HeaderList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Parts_Header",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "Parts_Header": {
+                                    "detail": {
+                                        "route": "Parts_HeaderObjectPage"
+                                    }
+                                }
+                            },
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "condensedTableLayout": true
+                                    }
+                                }
+                            },
+                            "content": {
+                                "header": {
+                                    "actions": {
+                                        "Fehlteisuchen": {
+                                            "press": "missingpartsapp.ext.controller.Fehlteilesuchen.OnPressFehlteileSuchen",
+                                            "visible": true,
+                                            "enabled": false,
+                                            "text": "Fehlteile Suchen"
+                                        },
+                                        "Tasksuchen": {
+                                            "press": "missingpartsapp.ext.controller.TasksAction.OnPress2",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Tasks Suchen",
+                                            "position": {
+                                                "placement": "After",
+                                                "anchor": "Fehlteisuchen"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "controlAggregation": "beginColumnPages",
+                    "contextPattern": ""
+                },
+                "Parts_HeaderObjectPage": {
+                    "type": "Component",
+                    "id": "Parts_HeaderObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "entitySet": "Parts_Header",
+                            "sectionLayout": "Page",
+                            "content": {
+                                "body": {
+                                    "sections": {
+                                        "Listmaterial": {
+                                            "template": "missingpartsapp.ext.Listmaterial",
+                                            "position": {
+                                                "placement": "Before",
+                                                "anchor": "GeneratedFacet1"
+                                            },
+                                            "title": "Fehlteil Mit Identischer Material",
+                                            "type": "XMLFragment"
+                                        }
+                                    }
+                                },
+                                "header": {
+                                    "actions": {
+                                        "relatedapps": {
+                                            "press": "missingpartsapp.ext.controller.Relatedapps.onPress",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Verwandte Apps"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "controlAggregation": "midColumnPages",
+                    "contextPattern": "/Parts_Header({key})"
+                }
+            }
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {}
+            }
+        },
+        "rootView": {
+            "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+            "type": "XML",
+            "async": true,
+            "id": "appRootView"
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}

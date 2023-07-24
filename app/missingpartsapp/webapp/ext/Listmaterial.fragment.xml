@@ -1,0 +1,120 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:macros="sap.fe.macros">
+
+<mvc:View
+	id="zView"
+	xmlns:core="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m"
+	xmlns:html="http://www.w3.org/1999/xhtml" 
+	xmlns:l="sap.ui.layout">
+
+    <l:VerticalLayout id="verlay1" core:require="{handler: 'missingpartsapp/ext/Listmaterial'}">
+        <Table
+            id="idmatTable"
+			mode="SingleSelectLeft"
+            selectionChange="handler.onSelectionChange"
+            inset="false"
+            items="{
+			path: '/Parts_Header'}" >
+            <headerToolbar>
+                <OverflowToolbar id="overlw1">
+                    <content>
+                        <Title
+                            id="txttitle1"
+                            text="Summe Restmenge: 9"
+                            level="H1"
+                        />
+                    </content>
+                </OverflowToolbar>
+            </headerToolbar>
+            <infoToolbar />
+            <columns>
+                <Column
+                    id="col1"
+                    width="12em"
+					minScreenWidth="tablet"
+				    demandPopin="true"
+                >
+                    <Text
+                        id="text1"
+                        text="Fehlteil-ID"
+                    />
+                </Column>
+                <Column id="col2" minScreenWidth="tablet"
+				demandPopin="true">
+                    <Text
+                        id="txt2"
+                        text="Restmenge"
+						
+                    />
+                </Column>
+				<Column id="col3" minScreenWidth="tablet"
+				demandPopin="true">
+                    <Text
+                        id="txt3"
+                        text="Bedarfswerk"
+                    />
+                </Column>
+				<Column id="col4" minScreenWidth="tablet"
+				demandPopin="true">
+                    <Text
+                        id="txt4"
+                        text="Lagerort"
+                    />
+                </Column>
+				<Column id="col5" minScreenWidth="tablet"
+				demandPopin="true">
+                    <Text
+                        id="txt5"
+                        text="Bedarfstermin"
+                    />
+                </Column>
+				<Column id="col6" minScreenWidth="tablet"
+				demandPopin="true">
+                    <Text
+                        id="txt6"
+                        text="Fahrzeug Steht"
+                    />
+                </Column>
+
+            </columns>
+            <items>
+                <ColumnListItem
+                    id="listitm1"
+                    vAlign="Middle"
+                >
+                    <cells>
+                        <ObjectIdentifier
+                            id="idf1"
+                            title="{FehlteilID}"
+                        />
+                        <Text
+                            id="idf2"
+                            text="{Fehlteilmenge}"
+                        />
+						<Text
+                            id="idf3"
+                            text="{Bedarfswerk}"
+                        />
+						<Text
+                            id="idf4"
+                            text="{Lagerort}"
+                        />
+						<Text
+                            id="idf5"
+                            text="{Bedarfstermin}"
+                        />
+						<Text
+                            id="idf6"
+                            text="{FahrzeugseitCheck}"
+                        />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </l:VerticalLayout>
+    </mvc:View>
+</core:FragmentDefinition>
